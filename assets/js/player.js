@@ -2,7 +2,7 @@ Monopoly.Player = Class({
 
 	game: null,
 
-	element: null,
+	elements: null,
 
 	currentSquare: null,
 
@@ -29,6 +29,7 @@ Monopoly.Player = Class({
 
 	initialize: function(game) {
 		this.game = game;
+		this.elements = $();
 		this.name = "Player " + ++Monopoly.Player.count;
 		this.currentSquare = this.game.squares.Go;
 		this.properties = {};
@@ -37,12 +38,12 @@ Monopoly.Player = Class({
 
 	moveTo: function(square, cb) {
 		this.currentSquare = square;
-		var top  = parseInt(square.element.css("top")) + square.element.height() / 2
-		  , left = parseInt(square.element.css("left")) + square.element.width() / 2;
-		$(this.element).animate({
-			top: top,
-			left: left
-		}, cb);
+		var top  = parseInt(square.elements.position().top) + square.elements.height() / 2
+		  , left = parseInt(square.elements.position().left) + square.elements.width() / 2;
+		this.elements.transition({
+			y: top,
+			x: left
+		}, cb.debounce());
 	},
 
 	ask: function(message, yes, no) {
@@ -106,7 +107,7 @@ Monopoly.Player = Class({
 	},
 
 	play: function(cb) {
-		console.log(this + " ($" + this.money +") (" + this.currentSquare + ")");
+		this.game.log(this + " ($" + this.money +") (" + this.currentSquare + ")");
 		if(this.currentSquare == this.game.squares.Jail) {
 			this.askJail(function() {
 				this.withdraw(50, function() {
@@ -144,14 +145,14 @@ Monopoly.Player = Class({
 	},
 
 	deposit: function(amount, cb) {
-		console.log(" - deposit $" + amount + " to " + this);
+		this.game.log(" - deposit $" + amount + " to " + this);
 		this.money += amount;
 		this.renderMoney();
 		cb();
 	},
 
 	withdraw: function(amount, cb) {
-		console.log(" - withdraw $" + amount + " from " + this);
+		this.game.log(" - withdraw $" + amount + " from " + this);
 		if(amount > this.money) {
 			this.bankrupt();
 		} else {
@@ -166,22 +167,22 @@ Monopoly.Player = Class({
 	},
 
 	bankrupt: function() {
-		console.log(" - went bankrupt");
+		this.game.log(" - went bankrupt");
 		this.element.remove();
 		this.game.remove(this);
 	},
 
 	render: function(parent) {
-		this.element = $("<div />")
+		this.elements = this.elements.add($("<div />")
 			.addClass("player " + this.piece)
 			.append(
 				$("<span />").addClass("piece")
-			).appendTo(parent);
+			).appendTo(parent));
 		this.renderMoney();
 	},
 
 	renderMoney: function() {
-		this.element.find(".money").text("$" + this.money);
+		// TODO
 	},
 
 	toString: function() {

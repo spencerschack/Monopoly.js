@@ -12,7 +12,7 @@ Monopoly.Deck = Class({
 	},
 
 	draw: function(player, cb) {
-		console.log(" - drew " + this.cards[0] + " (" + this.cards[0].description + ")");
+		this.game.log(" - drew " + this.cards[0] + " (" + this.cards[0].description + ")");
 		this.cards.shift().draw(player, cb);
 	},
 

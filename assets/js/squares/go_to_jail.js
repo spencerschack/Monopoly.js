@@ -5,7 +5,7 @@ Monopoly.Square.GoToJail = Class(Monopoly.Square, {
 	next: "PacificAvenue",
 
 	land: function(player, cb) {
-		console.log(" - landed on " + this);
+		this.game.log(" - landed on " + this);
 		player.doubles = 0;
 		player.moveTo(this.game.squares.Jail, cb);
 	}

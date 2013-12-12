@@ -34,7 +34,7 @@ Monopoly.Square.Property = Class(Monopoly.Square, {
 	},
 
 	land: function(player, cb) {
-		console.log(" - landed on " + this);
+		this.game.log(" - landed on " + this);
 		if(this.owner) {
 			if(player == this.owner) {
 				cb();
@@ -75,7 +75,7 @@ Monopoly.Square.Property = Class(Monopoly.Square, {
 		this.owner = player;
 		player.properties[this] = this;
 		player.withdraw(this.price, cb);
-		this.element.append(this.element.find(".owner").addClass(player.piece));
+		this.elements.find(".owner").addClass(player.piece);
 	},
 
 	rent: function(player, cb) {
@@ -89,15 +89,16 @@ Monopoly.Square.Property = Class(Monopoly.Square, {
 
 	render: function(parent) {
 		this.super(parent);
-		this.element.append($("<span />").addClass("owner"));
-		this.element.append($("<span />").addClass("price").text("$" + this.price));
+		this.elements.append($("<span />").addClass("owner"));
+		this.elements.append($("<span />").addClass("price").text("$" + this.price));
 		if(this.improvePrice) {
-			this.element.append($("<span />").addClass("improvements"));
+			this.elements = this.elements.append($("<span />")
+				.addClass("improvements"));
 		}
 	},
 
 	renderImprovements: function() {
-		this.element.find(".improvements").text(this.houses);
+		this.elements.find(".improvements").text(this.houses);
 	},
 
 	improve: function(player, cb) {

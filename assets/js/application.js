@@ -18,8 +18,8 @@
 //= require_tree cards
 //= require die
 
-$.fx.speeds._default = 10;
+$.fx.speeds._default = 300;
 
 window.addEventListener("DOMContentLoaded", function() {
-	new Monopoly(document.body);
+	window.game = new Monopoly(document.body);
 });

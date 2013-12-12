@@ -2,7 +2,7 @@ Monopoly.Square = Class({
 
 	name: null,
 	game: null,
-	element: null,
+	elements: null,
 	classNames: "square",
 
 	next: null,
@@ -14,6 +14,7 @@ Monopoly.Square = Class({
 
 	initialize: function(game) {
 		this.game = game;
+		this.elements = $();
 	},
 
 	enter: function(player, cb) {
@@ -26,7 +27,7 @@ Monopoly.Square = Class({
 		if(player.currentSquare != this) {
 			debugger;
 		}
-		console.log(" - landed on " + this);
+		this.game.log(" - landed on " + this);
 		cb();
 	},
 
@@ -35,13 +36,14 @@ Monopoly.Square = Class({
 	},
 
 	render: function(parent) {
-		this.element = $("<div />")
-			.attr({ id: this.id, class: this.classNames})
+		this.elements = this.elements.add($("<div />")
+			.addClass(this.classNames)
+			.attr("id", this.id)
 			.append(
 				$("<span />")
 					.addClass("name")
 					.text(this.name)
-			).appendTo(parent);
+			).appendTo(parent));
 	},
 
 	toString: function() {

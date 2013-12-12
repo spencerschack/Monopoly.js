@@ -2,6 +2,8 @@ var Monopoly = Class({
 
 	board: null,
 
+	elements: null,
+
 	squares: [
 		"Go",
 		"MediterraneanAvenue",
@@ -56,7 +58,12 @@ var Monopoly = Class({
 
 	currentPlayer: null,
 
-	initialize: function(element) {
+	initialize: function(element, options) {
+
+		this.elements = $();
+
+		options || (options = {});
+		this.debug = options.debug || true;
 
 		var squareClasses = this.squares;
 		this.squares = {};
@@ -91,6 +98,8 @@ var Monopoly = Class({
 		this.communityChestDeck = new Monopoly.CommunityChestDeck(this);
 
 		this.render(element);
+		$(window).on("scroll resize", this.scroll.bind(this))
+			.scrollLeft(this.elements.width());
 
 		this.currentPlayer = this.players[0];
 		this.play();
@@ -98,8 +107,8 @@ var Monopoly = Class({
 
 	play: function() {
 		this.turn++;
-		console.log("================================");
-		console.log("Turn " + this.turn);
+		this.log("================================");
+		this.log("Turn " + this.turn);
 		this.advance();
 	},
 
@@ -121,26 +130,50 @@ var Monopoly = Class({
 		player.next.prev = player.next.prev.prev;
 		this.currentPlayer = player.next;
 		if(this.players.length == 1) {
-			console.log("=================================");
-			console.log(this.players[0] + " won");
+			this.log("=================================");
+			this.log(this.players[0] + " won");
 		} else {
 			this.advance();
 		}
 	},
 
+	/*
+
+	|--------------|--------------|-------------|--------------|
+			  |----|----|                  |----|----|
+
+	*/
+
+	scroll: function() {
+		var $window    = $(window)
+		  , halfWindow = $window.width() / 2
+		  , board      = this.elements.width()
+		  , scrollLeft = $window.scrollLeft();
+		if(scrollLeft < board / 2 - halfWindow) {
+			$window.scrollLeft(scrollLeft + board);
+		} else if(scrollLeft > 3 * board / 2 - halfWindow) {
+			$window.scrollLeft(scrollLeft - board);
+		}
+	},
+
 	render: function(parent) {
+		var container = $("<div />").attr("id", "monopoly").appendTo(parent);
+		for(var i = 0; i < 2; i++) {
+			var el = $("<div />").addClass("board").appendTo(container);
+			this.elements = this.elements.add(el);
+			this.players.forEach(function(player) {
+				player.render(el);
+			}, this);
+			Object.keys(this.squares).forEach(function(square) {
+				this.squares[square].render(el);
+			}, this);
+		}
+	},
 
-		var el = $("<div id='board' />").appendTo($(parent));
-		this.element = el;
-
-		this.players.forEach(function(player) {
-			player.render(el);
-		}, this);
-
-		Object.keys(this.squares).forEach(function(square) {
-			this.squares[square].render(el);
-		}, this);
-
+	log: function() {
+		if(this.debug) {
+			console.log.apply(console, arguments);
+		}
 	}
 
 }).mixin({

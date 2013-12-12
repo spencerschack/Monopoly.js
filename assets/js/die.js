@@ -9,7 +9,7 @@ Monopoly.Die = Class({
 		var m = this.random()
 		  , n = this.random();
 
-		console.log(" - rolled ", m, n);
+		this.game.log(" - rolled ", m, n);
 		cb(m, n);
 
 	},
