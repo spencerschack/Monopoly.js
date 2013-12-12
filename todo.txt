@@ -1,0 +1,5 @@
+TODO
+--------------------------------------------------------------------------------
+- Trading
+- Bankruptcy
+  - Assets must be given back to bank

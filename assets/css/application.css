@@ -1,0 +1,363 @@
+@font-face {
+	font-family: 'Monopoly';
+	src:url('/fonts/Monopoly.eot');
+	src:url('/fonts/Monopoly.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/Monopoly.ttf') format('truetype'),
+		url('/fonts/Monopoly.woff') format('woff'),
+		url('/fonts/Monopoly.svg#Monopoly') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	margin: 0;
+	font-family: "GothamBook", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#board {
+	width: 1100px;
+	height: 400px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -200px 0 0 -550px;
+	background: #A6CDC9;
+}
+
+.square {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+}
+
+.square:before {
+	position: absolute;
+	bottom: 10px;
+	content: '';
+	display: inline-block;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	z-index: 1;
+}
+
+#go {
+	height: 400px;
+}
+
+#go:before {
+	bottom: 310px;
+}
+
+#jail {
+	width: 50px;
+	left: 1050px;
+	background: #C53F14;
+}
+
+#free-parking {
+	background: #303030;
+}
+
+#free-parking:before {
+	border-left-color: #303030 !important;
+}
+
+#visiting-jail {
+	width: 50px;
+}
+
+#visiting-jail, #jail {
+	height: 200px;
+}
+
+#visiting-jail .name, #jail .name {
+	width: 40px;
+}
+
+#go .name {
+	color: #820D0C;
+	font-size: 48px;
+	line-height: 70px;
+}
+
+#new-york-avenue:before {
+	bottom: -10px;
+	left: 10px !important;
+	border-top: 10px solid #D5591E !important;
+	border-bottom: none !important;
+	border-right: 10px solid transparent !important;
+	border-left: 10px solid transparent !important;
+}
+
+#marvin-gardens:before {
+	bottom: -10px;
+	left: 10px !important;
+	right: auto !important;
+	border-top: 10px solid #FBAE00 !important;
+	border-bottom: none !important;
+	border-right: 10px solid transparent !important;
+	border-left: 10px solid transparent !important;
+}
+
+.square.purple {
+	background: #4A2D86;
+}
+
+.square.purple:before {
+	border-left-color: #4A2D86 !important;
+	border-right-color: #4A2D86 !important;
+}
+
+.square.light-blue {
+	background: #348191;
+}
+
+.square.light-blue:before {
+	border-left-color: #348191 !important;
+	border-right-color: #348191 !important;
+}
+
+.square.orange {
+	background: #D5591E;
+}
+
+.square.orange:before {
+	border-left-color: #D5591E !important;
+	border-right-color: #D5591E !important;
+}
+
+.square.pink {
+	background: #B01E86;
+}
+
+.square.pink:before {
+	border-left-color: #B01E86 !important;
+	border-right-color: #B01E86 !important;
+}
+
+.square.red {
+	background: #BB2626;
+}
+
+.square.red:before {
+	border-left-color: #BB2626 !important;
+	border-right-color: #BB2626 !important;
+}
+
+.square.yellow {
+	background: #FBAE00;
+}
+
+.square.yellow:before {
+	border-left-color: #FBAE00 !important;
+	border-right-color: #FBAE00 !important;
+}
+
+.square.green {
+	background: #009364;
+}
+
+.square.green:before {
+	border-left-color: #009364 !important;
+	border-right-color: #009364 !important;
+}
+
+.square.blue {
+	background: #005A88;
+}
+
+.square.blue:before {
+	border-left-color: #005A88 !important;
+	border-right-color: #005A88 !important;
+}
+
+.square.railroad {
+	background: #303030;
+}
+
+.square.railroad:before {
+	border-left-color: #303030 !important;
+	border-right-color: #303030 !important;
+}
+
+#go:before, #mediterranean-avenue:before, #community-chest1:before, #baltic-avenue:before, #income-tax:before,
+#reading-railroad:before, #oriental-avenue:before, #chance1:before, #vermont-avenue:before,
+#connecticut-avenue:before, #free-parking:before, #kentucky-avenue:before,
+#chance2:before, #indiana-avenue:before, #illinois-avenue:before, #b-o-railroad:before, #atlantic-avenue:before,
+#ventnor-avenue:before, #water-works:before, #marvin-gardens:before {
+	right: -7px;
+	border-left: 7px solid #A6CDC9;
+}
+
+#visiting-jail:before, #st-charles-place:before, #electric-company:before, #states-avenue:before, #virginia-avenue:before,
+#pennsylvania-railroad:before, #st-james-place:before, #community-chest2:before, #tennessee-avenue:before,
+#new-york-avenue:before, #pacific-avenue:before, #north-carolina-avenue:before,
+#community-chest3:before, #pennsylvania-avenue:before, #short-line:before, #chance3:before, #park-place:before,
+#luxury-tax:before, #boardwalk:before, #go-to-jail:before {
+	left: -7px;
+	border-right: 7px solid #A6CDC9;
+}
+
+#go, #mediterranean-avenue, #community-chest1, #baltic-avenue, #income-tax,
+#reading-railroad, #oriental-avenue, #chance1, #vermont-avenue,
+#connecticut-avenue, #visiting-jail, #jail {
+	top: 0;
+}
+
+#st-charles-place, #electric-company, #states-avenue, #virginia-avenue,
+#pennsylvania-railroad, #st-james-place, #community-chest2, #tennessee-avenue,
+#new-york-avenue {
+	top: 100px;
+}
+
+#kentucky-avenue, #chance2, #indiana-avenue, #illinois-avenue, #b-o-railroad,
+#atlantic-avenue, #ventnor-avenue, #water-works, #marvin-gardens, #free-parking {
+	top: 200px;
+}
+
+#pacific-avenue, #north-carolina-avenue, #community-chest3,
+#pennsylvania-avenue, #short-line, #chance3, #park-place, #luxury-tax,
+#boardwalk, #go-to-jail {
+	top: 300px;
+}
+
+#go {
+	left: 0;
+}
+
+#mediterranean-avenue, #new-york-avenue, #free-parking, #boardwalk {
+	left: 100px;
+}
+
+#community-chest1, #tennessee-avenue, #kentucky-avenue, #luxury-tax {
+	left: 200px;
+}
+
+#baltic-avenue, #community-chest2, #chance2, #park-place {
+	left: 300px;
+}
+
+#income-tax, #st-james-place, #indiana-avenue, #chance3 {
+	left: 400px;
+}
+
+#reading-railroad, #pennsylvania-railroad, #illinois-avenue, #short-line {
+	left: 500px;
+}
+
+#oriental-avenue, #virginia-avenue, #b-o-railroad, #pennsylvania-avenue {
+	left: 600px;
+}
+
+#chance1, #states-avenue, #atlantic-avenue, #community-chest3 {
+	left: 700px;
+}
+
+#vermont-avenue, #electric-company, #ventnor-avenue, #north-carolina-avenue {
+	left: 800px;
+}
+
+#connecticut-avenue, #st-charles-place, #water-works, #pacific-avenue {
+	left: 900px;
+}
+
+#visiting-jail, #go-to-jail, #marvin-gardens {
+	left: 1000px;
+}
+
+.square .name, .square .price, .square .owner, .square .owner:before, .square .improvements {
+	position: absolute;
+}
+
+.square .price, .square .owner, .square .improvements {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.square .name, .square .price {
+	text-align: center;
+}
+
+.square .name, .square .price, .square .improvements {
+	font-size: 9px
+}
+
+.square .name {
+	width: 90px;
+	padding: 0 5px;
+	top: 15px;
+	color: #FFF;
+	text-transform: uppercase;
+	padding: 0 5px;
+}
+
+.square .price {
+	width: 100px;
+	bottom: 10px;
+}
+
+.square .owner {
+	bottom: 5px;
+	left: 5px;
+}
+
+.square .owner:before {
+	bottom: 0;
+	left: 3px;
+}
+
+.square .improvements {
+	bottom: 10px;
+	right: 15px;
+}
+
+.player {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	margin: -10px 0 0 -20px;
+	text-align: center;
+	line-height: 40px;
+	z-index: 2;
+}
+
+.player .piece:before {
+	color: #FFF;
+	font-size: 32px;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+	
+.player .piece:before, .square .owner:before {
+	font-family: 'Monopoly';
+}
+
+.player.wheelbarrow .piece:before, .square .owner.wheelbarrow:before {
+	content: '\e600';
+}
+
+.player.thimble .piece:before, .square .owner.thimble:before {
+	content: '\e601';
+}
+
+.player.shoe .piece:before, .square .owner.shoe:before {
+	content: '\e602';
+}
+
+.player.ship .piece:before, .square .owner.ship:before {
+	content: '\e603';
+}
+
+.player.iron .piece:before, .square .owner.iron:before {
+	content: '\e604';
+}
+
+.player.hat .piece:before, .square .owner.hat:before {
+	content: '\e605';
+}
+
+.player.dog .piece:before, .square .owner.dog:before {
+	content: '\e606';
+}
+
+.player.car .piece:before, .square .owner.car:before {
+	content: '\e607';
+}
