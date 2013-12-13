@@ -43,7 +43,7 @@ Monopoly.Player = Class({
 		this.elements.transition({
 			y: top,
 			x: left
-		}, cb.debounce());
+		}, 300, 'linear', cb.debounce());
 	},
 
 	ask: function(message, yes, no) {
@@ -168,7 +168,7 @@ Monopoly.Player = Class({
 
 	bankrupt: function() {
 		this.game.log(" - went bankrupt");
-		this.element.remove();
+		this.elements.remove();
 		this.game.remove(this);
 	},
 

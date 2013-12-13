@@ -38,7 +38,7 @@ body {
 	height: 200px;
 	position: relative;
 	display: inline-block;
-	margin: 0 2px;
+	margin: 0 2px ;
 	background: #222;
 }
 
@@ -86,22 +86,20 @@ body {
 	text-align: center;
 }
 
-.square .name, .square .price, .square .improvements {
-	font-size: 13px
-}
-
 .square .name {
 	width: 100px;
 	padding: 0 10px;
-	top: 15px;
+	top: 35px;
 	color: #FFF;
+	font-size: 14px;
 	text-transform: uppercase;
 	white-space: normal;
 }
 
 .square .price {
 	width: 120px;
-	bottom: 10px;
+	bottom: 35px;
+	font-size: 13px;
 }
 
 .square .owner {

@@ -63,7 +63,7 @@ var Monopoly = Class({
 		this.elements = $();
 
 		options || (options = {});
-		this.debug = options.debug || true;
+		this.debug = options.debug || false;
 
 		var squareClasses = this.squares;
 		this.squares = {};
@@ -136,13 +136,6 @@ var Monopoly = Class({
 			this.advance();
 		}
 	},
-
-	/*
-
-	|--------------|--------------|-------------|--------------|
-			  |----|----|                  |----|----|
-
-	*/
 
 	scroll: function() {
 		var $window    = $(window)

@@ -22,6 +22,17 @@ Object.defineProperty(Function.prototype, "wrapSuper", { value: function(sup) {
 	}
 }});
 
+Object.defineProperty(Function.prototype, "once", { value: function() {
+	var func   = this
+	  , called = false;
+	return function() {
+		if(!called) {
+			called = true;
+			return func.apply(this, arguments);
+		}
+	}
+}});
+
 Object.defineProperty(Function.prototype, "debounce", { value: function() {
 	var func = this
 	  , timeout, context, args, called;
